@@ -1,0 +1,25 @@
+{
+  "version": "1.4.0",
+  "minRuntime": 1,
+  "notes": "Mode Campagne avec 3 boss, plan anti-stress, nouveau menu",
+  "date": "2026-10-11",
+  "installerUrl": "",
+  "files": [
+    {
+      "name": "index.html",
+      "sha256": "cef3dbe5b06155523cf557eb64f9b8ecfd25cce9cd8254f3d979d5a75cd3e624",
+      "size": 200468
+    },
+    {
+      "name": "three.min.js",
+      "sha256": "9274bbcec8d96168626c732b5d31c775aa8cfb7eaa0599bec0c175908a2c1ce2",
+      "size": 603445
+    },
+    {
+      "name": "peerjs.min.js",
+      "sha256": "ad5d8870d1e389914f9cba8d35be313c4327c69ee0a221e482e9bf7621136fe5",
+      "size": 92865
+    }
+  ],
+  "sig": "RZ/sbozurW1LyFXwGkXj7nEKFf9RvyCC8Rpd60b1nIwifgU8Ap8q0eZzk7C1ynbE8AIyPROfxq4NO/yfUwy8BA=="
+}
