@@ -1,14 +1,14 @@
 {
-  "version": "1.4.0",
+  "version": "1.4.1",
   "minRuntime": 1,
-  "notes": "Mode Campagne avec 3 boss, plan anti-stress, nouveau menu",
+  "notes": "Écran Mises à jour simplifié",
   "date": "2026-10-11",
   "installerUrl": "",
   "files": [
     {
       "name": "index.html",
-      "sha256": "cef3dbe5b06155523cf557eb64f9b8ecfd25cce9cd8254f3d979d5a75cd3e624",
-      "size": 200468
+      "sha256": "c98e5f71545e4942956e4f62b696fc8b26782e908463f0267aa9de1a04d9f50c",
+      "size": 199973
     },
     {
       "name": "three.min.js",
@@ -21,5 +21,5 @@
       "size": 92865
     }
   ],
-  "sig": "RZ/sbozurW1LyFXwGkXj7nEKFf9RvyCC8Rpd60b1nIwifgU8Ap8q0eZzk7C1ynbE8AIyPROfxq4NO/yfUwy8BA=="
+  "sig": "D/QPsfT17e8xKeq+U13z9WJV5iGvErTvihLYiFrubgBqYUtHWJBcTgxolQ0x9D8T8VpcwiH3YfhG/Dm11wKPBg=="
 }

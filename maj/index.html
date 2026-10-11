@@ -217,7 +217,7 @@ const UPD={info:null,st:null,cfg:{url:"",auto:true}};let curScr="";
 const GVER=()=>(UPD.info&&UPD.info.content)||"dev";
 const esc=t=>String(t==null?"":t).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 function updText(s){s=s||{};return esc(({idle:"Aucune vérification pour le moment.",checking:"Recherche d'une mise à jour…",uptodate:"✔ Vous avez la dernière version.",downloading:"Téléchargement de la version "+s.version+"…",
- ready:"✔ Version "+s.version+" prête ! "+(s.notes?"Nouveautés : "+s.notes:""),nourl:"Aucune adresse de serveur de mises à jour n'est configurée (voir plus bas).",error:"⚠ "+(s.message||"Erreur"),
+ ready:"✔ Version "+s.version+" prête ! "+(s.notes?"Nouveautés : "+s.notes:""),nourl:"Aucune adresse de serveur de mises à jour n'est configurée.",error:"⚠ "+(s.message||"Erreur"),
  "needs-installer":"Une nouvelle version complète ("+s.version+") est nécessaire. "+(s.notes||"")})[s.state]||"")}
 function initUpd(){const u=window.stsUpd;if(!u)return;
  u.info().then(i=>{UPD.info=i;if(curScr==="main"&&menuOpen())menuScreen("main")});u.cfg().then(c=>{UPD.cfg=c;UPD.st=c.status});
@@ -589,7 +589,6 @@ function menuScreen(n){curScr=n;let h="";$("hud").style.visibility=inGame?"visib
    +(S.state==="ready"?btn("⬇ Redémarrer pour appliquer la version "+esc(S.version)+(inGame?" (la partie en cours sera perdue)":""),"updapply"):"")
    +(S.state==="needs-installer"&&S.installerUrl?btn("🌐 Télécharger la nouvelle version complète","updinst"):"")
    +btn(`⚙ Mises à jour automatiques : ${C.auto?"oui":"non"}`,"updauto","alt")
-   +`<input id="uurl" placeholder="Adresse des mises à jour (vide = adresse par défaut)" value="${esc(C.url||"")}" style="width:100%;font-size:.9rem;padding:8px;border-radius:8px;border:0;margin:4px 0">`+btn("💾 Enregistrer l'adresse","updurl","alt")
    +`<p class="w">Chaque mise à jour est signée : le jeu refuse toute mise à jour dont l'origine n'est pas authentique.</p>`+btn("← Retour","opts","alt")}
  if(n==="end"&&G.boss){const w=G.over==="win",b=G.boss,nx=G.bi+1<BOSS.length;
   h=`<h1>${w?"🏆 Boss vaincu !":"😵 Le boss a gagné…"}</h1><p><b>${b.n}</b> — ${b.sub}</p>`+(w?`<h3>Fiche conseil</h3><ul class="tl">${b.fiche.map(t=>`<li>${t}</li>`).join("")}</ul>`:`<p>Demander de l'aide plus tôt change tout ! Essayez un autre deck, avec plus de cartes de soin.</p>`)+`<p class="w">💡 Conseils découverts : ${G.seen.size}/${PC.length}</p>${WARN}`
@@ -607,7 +606,6 @@ function act(a){aInit();snd("click");if(a.slice(0,2)==="go")return startGame(+a[
  acc:()=>menuScreen("acc"),art:()=>menuScreen("art"),upd:()=>menuScreen("upd"),
  updcheck:()=>{if(window.stsUpd)stsUpd.check().then(x=>{UPD.st=x;if(curScr==="upd"&&menuOpen())menuScreen("upd")})},updapply:()=>{if(window.stsUpd)stsUpd.apply()},updinst:()=>{if(window.stsUpd)stsUpd.openInstaller()},
  updauto:()=>{if(window.stsUpd)stsUpd.setCfg({auto:!UPD.cfg.auto}).then(c=>{Object.assign(UPD.cfg,c);menuScreen("upd")})},
- updurl:()=>{if(window.stsUpd)stsUpd.setCfg({url:($("uurl").value||"").trim()}).then(c=>{Object.assign(UPD.cfg,c);menuScreen("upd")})},vol:()=>{volBack="opts";menuScreen("vol")},volp:()=>{volBack="pause";menuScreen("vol")},
  voltest:()=>{snd("place");setTimeout(()=>snd("hit"),250);setTimeout(()=>snd("heal"),500);setTimeout(()=>snd("turn"),900)},volreset:()=>{ST.vol={g:.7,m:.7,s:.7,u:.7};applyVol();saveST();menuScreen("vol")},snd:()=>menuScreen("snd"),srv:()=>menuScreen("srv"),
  cb:()=>{ST.cb=!ST.cb;saveST();applyST();menuScreen("acc")},fs2:()=>{ST.fs=(ST.fs+1)%3;saveST();applyST();menuScreen("acc")},rm:()=>{ST.rm=!ST.rm;saveST();applyST();menuScreen("acc")},
  srvsave:()=>{const h=($("sh").value||"").trim();ST.srv=h?{host:h,port:+$("sp").value||9000,secure:$("ss").checked}:null;saveST();menuScreen("srv")},srvreset:()=>{ST.srv=null;saveST();menuScreen("srv")},
